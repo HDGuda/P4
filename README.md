@@ -26,18 +26,3 @@ After these improvements there was no jank, no FSL, and the page ran quickly and
 
 Recalculated the numbers of flying pizzas (credits: the reviewer).
 
-
-TO THE REVIEWER:
-
-- Do you have any comments on the .htaccess?
-
-- Your suggestion after line 473: 
->Despite this only improves loading performance, you could
->optimize this loop as well (think about not needed elements
->inside the loop).
-
-I don't see what you mean.
-
-- I compressed the images with gulp-imagemin. But obviously you are not satisfied with the compression of pizzeria.jpg. Do you have further hints on compression? I mean, of course I can make it smaller and compress it more, but what is the minimum here?
-
- 
