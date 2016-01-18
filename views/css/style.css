@@ -33,7 +33,9 @@ form {
   position: fixed;
   width: 256px;
   z-index: -1;
-}
+  -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+  backface-visibility: hidden;
+} /* Note to the reviewer: I don't see any difference. As far as I could find out this property only changes rotating objects. But the pizzas do not rotate. */
 
 .randomPizzaContainer {
   float: left;

@@ -450,7 +450,7 @@ var resizePizzas = function(size) {
           console.log("bug in sizeSwitcher");
       }
 
-    var randPizza = document.querySelectorAll(".randomPizzaContainer");
+    var randPizza = document.getElementsByClassName(".randomPizzaContainer");
 
     for (var i = 0; i < randPizza.length; i++) {
       randPizza[i].style.width = newwidth + '%';
@@ -503,11 +503,18 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-  var distancetoTop = document.body.scrollTop;
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((distancetoTop / 500) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+
+  var phase = [];
+  var scrollTop = document.body.scrollTop;
+  for (var i = 0; i < 5; i++) {
+    phase.push(Math.sin(scrollTop / 1250 + i) * 100);
   }
+
+  for (var i = 0, max = items.length; i < max; i++) {
+    items[i].style.left = items[i].basicLeft + phase[i%5] + 'px';
+}
+// Note to the reviewer: Good tip! Thank you!
+
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -524,9 +531,10 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
+  var screenHeight = window.innerHeight;
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0, maxi = Math.ceil(screenHeight / 100 * 8); i < maxi; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
